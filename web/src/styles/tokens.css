@@ -1,0 +1,79 @@
+/* ── Design tokens ──────────────────────────────────────────────────────
+   This is an internal shop-floor tool for a musical instrument retailer.
+   The palette draws from instrument hardware — dark walnut/tolex and
+   brass tuning-peg tones — rather than a generic SaaS look. One accent
+   color carries every primary action; everything else stays quiet so
+   the search field and the "mark as brought" action are unmistakable.
+   ------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --bg: #16140f;
+  --surface: #1f1c16;
+  --surface-raised: #262219;
+  --border: #38332a;
+  --text: #f3efe6;
+  --text-muted: #a79c88;
+  --accent: #c89b3c;
+  --accent-strong: #e0b455;
+  --accent-text: #16140f;
+  --positive: #6faf8b;
+  --danger: #c9634c;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+button {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

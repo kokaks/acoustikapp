@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: warehouse-api
+    runtime: node
+    plan: starter
+    rootDir: server
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: DATABASE_URL
+        sync: false # set from your Neon connection string
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        sync: false # e.g. https://warehouse-web.onrender.com
+      - key: PGSSL
+        value: "true"
+
+  - type: web
+    name: warehouse-web
+    runtime: static
+    rootDir: web
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false # e.g. https://warehouse-api.onrender.com
+      - key: VITE_WS_URL
+        sync: false # e.g. wss://warehouse-api.onrender.com/ws
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
